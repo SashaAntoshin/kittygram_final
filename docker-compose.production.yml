@@ -1,40 +1,43 @@
 volumes:
-  pg_data_production:
+  pg_data:
   static_volume:
   media_volume:
 
+
 services:
   db:
-    image: postgres:13.10
+    image: postgres:13
     env_file: .env
     volumes:
       - pg_data_production:/var/lib/postgresql/data
-  
+
   backend:
-    image: ${DOCKER_USERNAME}/kittygram_backend
+    image: ${DOCKER_USERNAME}/kittygram_backend:latest
     env_file: .env
     volumes:
-      - static_volume:/backend_static
+      - static_volume:/app/backend_static
       - media_volume:/app/media
     depends_on:
       - db
-  
+    ports:
+      - "9000:9000"
+
   frontend:
+    image: sashaantoshin/kittygram_frontend:latest
     env_file: .env
-    image: ${DOCKER_USERNAME}/kittygram_frontend
-    environment:
-      - API_URL=http://kittygram17.hopto.org:9000
+    depends_on:
+      - backend
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static_volume:/frontend_static
-  
+
   gateway:
-    image: ${DOCKER_USERNAME}/kittygram_gateway
+    image: sashaantoshin/kittygram_gateway:latest
     env_file: .env
     ports:
       - "9001:80"
     volumes:
-      - static_volume:/staticfiles/
+      - static_volume:/staticfiles
       - media_volume:/app/media
     depends_on:
       - backend
