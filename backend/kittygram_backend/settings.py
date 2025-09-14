@@ -102,10 +102,10 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'collected_static'
+STATIC_ROOT = '/backend_static/static'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = '/app/media'
 
 CSRF_TRUSTED_ORIGINS = [
     "https://globekitty.duckdns.org",
@@ -115,7 +115,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOWED_ORIGINS = os.getenv(
     'CORS_ALLOWED_ORIGINS',
-    'globekitty.duckdns.org,globekitty.duckdns.org,http://localhost:3000,http://127.0.0.1:3000'
+    'https://globekitty.duckdns.org,http://globekitty.duckdns.org,http://localhost:3000,http://127.0.0.1:3000'
 ).split(',')
 
 CORS_ALLOW_CREDENTIALS = True
