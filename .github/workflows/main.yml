@@ -221,4 +221,4 @@ jobs:
             Коммит: ${{ github.event.head_commit.message }}
             Ссылка: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
             
-            Проект обновлен и готов к работе!
+            Проект обновлен и готов к работе! 
