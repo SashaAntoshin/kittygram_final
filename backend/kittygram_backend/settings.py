@@ -90,9 +90,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -107,10 +107,11 @@ STATIC_ROOT = '/backend_static/static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/app/media'
 
-CSRF_TRUSTED_ORIGINS = os.getenv(
-    'CSRF_TRUSTED_ORIGINS', 
-    'http://localhost:3000'
-).split(',')
+CSRF_TRUSTED_ORIGINS = [
+    "https://globekitty.duckdns.org",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
 CORS_ALLOWED_ORIGINS = os.getenv(
     'CORS_ALLOWED_ORIGINS',
